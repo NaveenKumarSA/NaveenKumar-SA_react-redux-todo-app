@@ -1,57 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import React from "react";
+// import logo from "./logo.svg";
+// import { Counter } from "./features/counter/Counter";
+import "./App.css";
+import TodoAppWrapper from "./features/todos/TodoAppWrapper";
+import { Grid } from "@material-ui/core";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Grid container className="main-wrapper-container">
+      <Grid item xs={12} sm={12} md={2} className="appSideBar"></Grid>
+      <Grid item xs={12} sm={12} md={3} className="appMainBar">
+        <TodoAppWrapper />
+      </Grid>
+      <Grid item xs={12} sm={12} md={7}></Grid>
+    </Grid>
   );
 }
 

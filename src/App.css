@@ -1,3 +1,102 @@
+:root {
+  --theme-dark: #323e4d;
+  --theme-light-grey: rgb(188, 185, 185);
+  --theme-light-green: #edf7fc;
+  --theme-dark-green: #47bb7f;
+}
+.list-component {
+  width: 90%;
+}
+.appSideBar {
+  background-color: var(--theme-dark);
+  margin-right: 2% !important;
+  min-height: 800px !important;
+  min-height: auto;
+}
+.action-container button {
+  padding: 4% 8%;
+  border: none;
+  border-radius: 5px;
+  margin: 1%;
+}
+.action-container .save-option {
+  background: var(--theme-dark-green);
+  padding: 4% 8%;
+  border: none;
+  border-radius: 5px;
+  color: #eee;
+}
+.task-List {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 0.5px solid #000; */
+}
+
+.task-list-item-left {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.name-and-date h3,
+h5 {
+  line-height: 0;
+  text-transform: capitalize;
+}
+
+.name-and-date h5 {
+  color: tomato;
+}
+
+.assignee_Image {
+  margin: 10px;
+}
+
+.task-count-addbutton-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--theme-light-grey);
+  padding: -2px 0 0 3%;
+}
+
+.task-container-wrapper {
+  width: 86%;
+  margin-top: 10%;
+  background-color: var(--theme-light-green);
+  padding: 0%;
+}
+
+p {
+  line-height: 0%;
+}
+
+input {
+  width: 100%;
+  border: none;
+  padding: 3% 0%;
+}
+
+select {
+  width: 100%;
+  border: none;
+  padding: 2% 0%;
+}
+
+.task-details-wrapper {
+  padding: 5%;
+}
+
+.action-container {
+  padding: 6% 0%;
+  justify-content: flex-end;
+  display: flex;
+}
+
+/* default  */
+
 .App {
   text-align: center;
 }
