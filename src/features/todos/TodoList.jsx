@@ -1,9 +1,10 @@
-import React, { useEffect/* , useState  */} from "react";
+import React, { useEffect /* , useState  */ } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 //import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodoAsync, removeTodoAsync } from "../../redux/todoSlice";
+// import { addTodo, editTodo  } from "../../redux/teamSlice";
 
 export default function TodoList() {
   const dispatch = useDispatch();
@@ -12,10 +13,13 @@ export default function TodoList() {
     dispatch(getTodoAsync());
   }, [dispatch]);
   const handleDeleteAction = (item) => {
-  //  console.log("handle delete action ", item);
+    //  console.log("handle delete action ", item);
     dispatch(removeTodoAsync({ item }));
   };
- // console.log("todos inside ", todos);
+  const handleEditAction = (item) => {
+    // dispatch(addTodo( item));
+  };
+  // console.log("todos inside ", todos);
   return (
     <div className="list-component">
       {todos.map((item, key) => {
@@ -38,7 +42,11 @@ export default function TodoList() {
             </div>
             <div className="task-list-item-right">
               <span>
-                <EditIcon />
+                <EditIcon
+                  onClick={() => {
+                    handleEditAction(item);
+                  }}
+                />
               </span>
               <span>
                 <DeleteIcon

@@ -14,7 +14,7 @@ export const getTodoAsync = createAsyncThunk("todos/getTodoAsync", async () => {
   };
   await axios(config)
     .then(function (response) {
-      console.log("response.getTodoAsync", response.data.results);
+     // console.log("response.getTodoAsync", response.data.results);
       todos = response.data.results;
     })
     .catch(function (error) {
@@ -27,7 +27,7 @@ export const getTodoAsync = createAsyncThunk("todos/getTodoAsync", async () => {
 export const addTodoAsync = createAsyncThunk(
   "todos/addTodoAsync",
   async (payload) => {
-    console.log("payload", payload);
+    // console.log("payload", payload);
     var todo;
     var config = {
       method: "POST",
@@ -45,10 +45,10 @@ export const addTodoAsync = createAsyncThunk(
         task_msg: payload.task_name,
       }),
     };
-    console.log("add Check", config.body);
+  //  console.log("add Check", config.body);
     await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify("post response", response));
+       // console.log(JSON.stringify("post response", response));
         todo = response.data;
       })
       .catch(function (error) {
@@ -57,13 +57,14 @@ export const addTodoAsync = createAsyncThunk(
     return { todo };
   }
 );
+
 /* remove item from the end point */
 export const removeTodoAsync = createAsyncThunk(
   "todos/removeTodoAsync",
 
   async (payload) => {
     var todo = payload.item;
-    console.log("remove payload", todo);
+    console.log("remove payload", payload.item);
     var config = {
       method: "delete",
       url: `https://stage.api.sloovi.com/task/lead_58be137bfde045e7a0c8d107783c4598/${payload.item.id}`,
@@ -74,7 +75,7 @@ export const removeTodoAsync = createAsyncThunk(
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+       // console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -87,6 +88,7 @@ const todoSlice = createSlice({
   initialState: [],
   reducer: {
     addTodo: (state, action) => {
+//console.log("inside add todo function")
       const newTodo = {
         id: Date.now(),
         task_name: action.payload.task_name,
@@ -94,31 +96,35 @@ const todoSlice = createSlice({
       };
       state.push(newTodo);
     },
+    editTodo: (state, action) => {
+  //    console.log("state && Action ", state, action);
+    },
   },
   extraReducers: {
     [getTodoAsync.pending]: (state, action) => {
-      console.log("fetching todo List");
+     // console.log("fetching todo List");
     },
     [getTodoAsync.fulfilled]: (state, action) => {
-      console.log(action.payload.todos);
+    //  console.log(action.payload.todos);
       return action.payload.todos;
     },
     [addTodoAsync.fulfilled]: (state, action) => {
-      console.log(action.payload.todo);
+   //   console.log(action.payload.todo);
       state.push(action.payload.todo.results);
     },
     [removeTodoAsync.fulfilled]: (state, action) => {
-      console.log("action .payload. ", action.payload.todo.id);
-      console.log("state ",state);
-      console.log("state.pop ",state.pop());
-      // console.log("state.filter ",state.filter((todo)=> todo.id !== action.payload.todo.id));
-      /* state.map((todo) => {
+    /*   console.log("remove action .payload. ", action.payload.todo.id);
+     console.log(" remove state ", state.todos);*/
+      //console.log("state.pop ", state.pop());
+     /*  todo.id !== action.payload.todo.id) */
+    // console.log("state . filter", state.todos.map((todo)=>{todo.id !== action.payload.todo.id})); 
+    // state.todo = state.todos.filter((todo)=>{todo.id !== action.payload.todo.id})
+      /*  state.map((todo) => {
         console.log(todo);
          todo.id !== action.payload.todo.id;
-        return "";    });  */
-  
+        return "";    });   */
     },
   },
 });
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, editTodo } = todoSlice.actions;
 export default todoSlice.reducer;
